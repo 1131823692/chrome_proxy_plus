@@ -1,0 +1,20 @@
+{
+   "action": {
+      "default_icon": "icons/logo48.png",
+      "default_title": "Proxy代理"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "description": "设置浏览器代理 - 增强版：单击切换代理，右键打开设置",
+   "icons": {
+      "128": "icons/logo128.png",
+      "48": "icons/logo48.png",
+      "72": "icons/logo72.png",
+      "96": "icons/logo96.png"
+   },
+   "manifest_version": 3,
+   "name": "Proxy代理 Plus",
+   "permissions": [ "proxy", "contextMenus", "storage" ],
+   "version": "1.2"
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Proxy代理设置</title>
+    <link rel="stylesheet" href="popup.css"/>
+</head>
+<body>
+<div class="container">
+    <h2>Proxy代理设置</h2>
+
+    <fieldset>
+        <div class="field">
+            <span class="field-label">代理模式：</span>
+            <label class="mode-btn" data-mode="direct">
+                <input type="radio" name="mode" value="direct"/>直接连接
+            </label>
+            <label class="mode-btn" data-mode="fixed_servers">
+                <input type="radio" name="mode" value="fixed_servers"/>指定代理
+            </label>
+            <label class="mode-btn" data-mode="auto_detect">
+                <input type="radio" name="mode" value="auto_detect"/>自动检测
+            </label>
+            <label class="mode-btn active" data-mode="system">
+                <input type="radio" name="mode" value="system" checked/>系统设置
+            </label>
+        </div>
+
+        <div class="proxy-config">
+            <div class="field">
+                <span class="field-label">代理协议：</span>
+                <label class="scheme-btn active" data-scheme="http">
+                    <input type="radio" name="scheme" value="http" checked/>HTTP
+                </label>
+                <label class="scheme-btn" data-scheme="https">
+                    <input type="radio" name="scheme" value="https"/>HTTPS
+                </label>
+                <label class="scheme-btn" data-scheme="socks4">
+                    <input type="radio" name="scheme" value="socks4"/>SOCKS4
+                </label>
+                <label class="scheme-btn" data-scheme="socks5">
+                    <input type="radio" name="scheme" value="socks5"/>SOCKS5
+                </label>
+            </div>
+
+            <div class="field">
+                <span class="field-label">代理地址：</span>
+                <input type="text" id="host" value="127.0.0.1" placeholder="如 123.45.67.89"/>
+            </div>
+
+            <div class="field">
+                <span class="field-label">代理端口：</span>
+                <input type="text" id="port" value="7897" placeholder="如 8080"/>
+            </div>
+
+            <div class="field">
+                <span class="field-label">代理规则：</span>
+                <label class="rule-btn active" data-rule="http">
+                    <input type="checkbox" name="rules" value="http" checked/>HTTP
+                </label>
+                <label class="rule-btn active" data-rule="https">
+                    <input type="checkbox" name="rules" value="https" checked/>HTTPS
+                </label>
+                <label class="rule-btn active" data-rule="ftp">
+                    <input type="checkbox" name="rules" value="ftp" checked/>FTP
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="actions">
+        <button class="btn-save" id="btn-save">保存</button>
+    </div>
+    <div class="hint">提示：单击插件图标可快速切换「指定代理 / 系统设置」</div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

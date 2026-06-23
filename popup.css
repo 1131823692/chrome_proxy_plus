@@ -1,0 +1,197 @@
+:root {
+    --color-primary: #4CAF50;
+    --color-primary-hover: #43a047;
+    --color-accent: #FF9800;
+    --color-bg: #f5f5f5;
+    --color-card: #fff;
+    --color-text: #333;
+    --color-text-secondary: #555;
+    --color-text-muted: #999;
+    --color-border: #ddd;
+    --color-border-hover: #999;
+    --color-input-border: #ccc;
+    --radius: 4px;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    background: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    color: var(--color-text);
+}
+
+.container {
+    background: var(--color-card);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 30px 40px;
+    max-width: 500px;
+    width: 100%;
+}
+
+h2 {
+    font-size: 18px;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 0;
+    line-height: 2;
+}
+
+.field-label {
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    min-width: 70px;
+}
+
+/* 隐藏原生 radio/checkbox，用 label 模拟按钮 */
+.field input[type="radio"],
+.field input[type="checkbox"] {
+    display: none;
+}
+
+/* 模式选择按钮 */
+.mode-btn {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.mode-btn:hover {
+    border-color: var(--color-border-hover);
+}
+
+.mode-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    font-weight: bold;
+}
+
+.mode-btn.accent {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+    font-weight: bold;
+}
+
+/* 协议选择 */
+.scheme-btn {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+    font-size: 13px;
+}
+
+.scheme-btn:hover {
+    border-color: var(--color-border-hover);
+}
+
+.scheme-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
+/* 规则 checkbox */
+.rule-btn {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+    font-size: 13px;
+}
+
+.rule-btn:hover {
+    border-color: var(--color-border-hover);
+}
+
+.rule-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
+/* 输入框 */
+input[type="text"] {
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius);
+    padding: 6px 10px;
+    font-size: 14px;
+    width: 220px;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* 代理配置区域 */
+.proxy-config {
+    display: none;
+    padding: 4px 0;
+}
+
+.proxy-config.show {
+    display: block;
+}
+
+/* 保存按钮 */
+.actions {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.btn-save {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 40px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-save:hover {
+    background: var(--color-primary-hover);
+}
+
+/* 提示文字 */
+.hint {
+    color: var(--color-text-muted);
+    font-size: 12px;
+    margin-top: 16px;
+    text-align: center;
+}
