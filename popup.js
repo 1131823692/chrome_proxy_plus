@@ -76,13 +76,18 @@ async function handleSave() {
 
         if (!host) { alert('请输入代理服务器地址'); return; }
         if (!port) { alert('请输入代理服务器端口'); return; }
+        const portNum = parseInt(port, 10);
+        if (isNaN(portNum) || portNum < 1 || portNum > 65535) {
+            alert('端口必须是 1-65535 之间的数字');
+            return;
+        }
         if (checkedRules.length === 0) { alert('请选择代理规则'); return; }
 
         await chrome.storage.local.set({
             mode,
             scheme: $('input[name="scheme"]:checked').value,
             host,
-            port,
+            port: portNum,
             rules: checkedRules.map((el) => el.value).join(','),
         });
     } else {
