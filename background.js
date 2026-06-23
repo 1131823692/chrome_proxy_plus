@@ -18,12 +18,12 @@ const PROXY_KEYS = ['mode', 'scheme', 'host', 'port', 'rules'];
 
 chrome.runtime.onInstalled.addListener(() => {
     // 防止扩展更新时重复 id 报错
-    try {
-        chrome.contextMenus.create({
-            id: 'proxy-settings',
-            title: 'Proxy代理设置',
-            contexts: ['all'],
-        });
+   try {
+       chrome.contextMenus.create({
+           id: 'proxy-settings',
+            title: chrome.i18n.getMessage('ctx_menu'),
+           contexts: ['all'],
+       });
     } catch (e) {
         // 已存在则忽略
     }
@@ -117,19 +117,20 @@ async function applyProxy(mode) {
 // ── 图标状态 ──────────────────────────────────────────
 
 const MODE_LABELS = {
-    fixed_servers: '指定代理已启用',
-    system: '系统设置',
-    direct: '直接连接',
-    auto_detect: '自动检测',
+    fixed_servers: 'mode_label_fixed_on',
+    system: 'mode_system',
+    direct: 'mode_direct',
+    auto_detect: 'mode_auto',
 };
 
 async function updateIcon(mode) {
-    const label = MODE_LABELS[mode] || mode;
+    const key = MODE_LABELS[mode];
+    const label = key ? chrome.i18n.getMessage(key) : mode;
     const proxyActive = mode === 'fixed_servers';
 
     await chrome.action.setBadgeText({ text: proxyActive ? 'ON' : '' });
     if (proxyActive) {
         await chrome.action.setBadgeBackgroundColor({ color: '#4CAF50' });
     }
-    await chrome.action.setTitle({ title: `Proxy代理 - ${label} (点击切换)` });
+    await chrome.action.setTitle({ title: chrome.i18n.getMessage('icon_title', [label]) });
 }

@@ -3,6 +3,19 @@
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
+// ── 国际化 ────────────────────────────────────────────
+
+function applyI18n() {
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const msg = chrome.i18n.getMessage(el.dataset.i18n);
+        if (msg) el.textContent = msg;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const msg = chrome.i18n.getMessage(el.dataset.i18nPlaceholder);
+        if (msg) el.placeholder = msg;
+    });
+}
+
 // ── UI 更新 ──────────────────────────────────────────
 
 function updateModeUI() {
@@ -60,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 保存按钮
     $('#btn-save').addEventListener('click', handleSave);
 
+    // 应用本地化文案
+    applyI18n();
+
     // 初始化
     init();
 });
@@ -74,14 +90,14 @@ async function handleSave() {
         const port = $('#port').value.trim();
         const checkedRules = [...$$('input[name="rules"]:checked')];
 
-        if (!host) { alert('请输入代理服务器地址'); return; }
-        if (!port) { alert('请输入代理服务器端口'); return; }
+        if (!host) { alert(chrome.i18n.getMessage('alert_host')); return; }
+        if (!port) { alert(chrome.i18n.getMessage('alert_port')); return; }
         const portNum = parseInt(port, 10);
         if (isNaN(portNum) || portNum < 1 || portNum > 65535) {
-            alert('端口必须是 1-65535 之间的数字');
+            alert(chrome.i18n.getMessage('alert_port_range'));
             return;
         }
-        if (checkedRules.length === 0) { alert('请选择代理规则'); return; }
+        if (checkedRules.length === 0) { alert(chrome.i18n.getMessage('alert_rules')); return; }
 
         await chrome.storage.local.set({
             mode,

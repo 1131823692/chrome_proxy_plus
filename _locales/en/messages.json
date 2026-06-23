@@ -1,0 +1,31 @@
+{
+    "ext_name": {"message": "Proxy Plus"},
+    "ext_description": {"message": "Browser proxy manager - enhanced: click to toggle, right-click for settings"},
+    "action_title": {"message": "Proxy"},
+    "ctx_menu": {"message": "Proxy Settings"},
+    "settings_title": {"message": "Proxy Settings"},
+    "mode_label": {"message": "Mode:"},
+    "mode_direct": {"message": "Direct"},
+    "mode_fixed": {"message": "Fixed Servers"},
+    "mode_auto": {"message": "Auto Detect"},
+    "mode_system": {"message": "System"},
+    "scheme_label": {"message": "Scheme:"},
+    "host_label": {"message": "Host:"},
+    "host_placeholder": {"message": "e.g. 123.45.67.89"},
+    "port_label": {"message": "Port:"},
+    "port_placeholder": {"message": "e.g. 8080"},
+    "rules_label": {"message": "Rules:"},
+    "btn_save": {"message": "Save"},
+    "hint": {"message": "Tip: click the icon to toggle between Fixed Servers and System"},
+    "alert_host": {"message": "Please enter a proxy host"},
+    "alert_port": {"message": "Please enter a proxy port"},
+    "alert_port_range": {"message": "Port must be a number between 1 and 65535"},
+    "alert_rules": {"message": "Please select at least one proxy rule"},
+    "mode_label_fixed_on": {"message": "Fixed proxy enabled"},
+    "icon_title": {
+        "message": "Proxy - $LABEL$ (click to toggle)",
+        "placeholders": {
+            "label": {"content": "$1"}
+        }
+    }
+}

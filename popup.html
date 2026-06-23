@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Proxy代理设置</title>
+    <title data-i18n="settings_title"></title>
     <link rel="stylesheet" href="popup.css"/>
 </head>
 <body>
 <div class="container">
-    <h2>Proxy代理设置</h2>
+    <h2 data-i18n="settings_title"></h2>
 
     <fieldset>
         <div class="field">
-            <span class="field-label">代理模式：</span>
+            <span class="field-label" data-i18n="mode_label"></span>
             <label class="mode-btn" data-mode="direct">
-                <input type="radio" name="mode" value="direct"/>直接连接
+                <input type="radio" name="mode" value="direct"/><span data-i18n="mode_direct"></span>
             </label>
             <label class="mode-btn" data-mode="fixed_servers">
-                <input type="radio" name="mode" value="fixed_servers"/>指定代理
+                <input type="radio" name="mode" value="fixed_servers"/><span data-i18n="mode_fixed"></span>
             </label>
             <label class="mode-btn" data-mode="auto_detect">
-                <input type="radio" name="mode" value="auto_detect"/>自动检测
+                <input type="radio" name="mode" value="auto_detect"/><span data-i18n="mode_auto"></span>
             </label>
             <label class="mode-btn active" data-mode="system">
-                <input type="radio" name="mode" value="system" checked/>系统设置
+                <input type="radio" name="mode" value="system" checked/><span data-i18n="mode_system"></span>
             </label>
         </div>
 
         <div class="proxy-config">
             <div class="field">
-                <span class="field-label">代理协议：</span>
+                <span class="field-label" data-i18n="scheme_label"></span>
                 <label class="scheme-btn active" data-scheme="http">
                     <input type="radio" name="scheme" value="http" checked/>HTTP
                 </label>
@@ -45,17 +45,17 @@
             </div>
 
             <div class="field">
-                <span class="field-label">代理地址：</span>
-                <input type="text" id="host" value="127.0.0.1" placeholder="如 123.45.67.89"/>
+                <span class="field-label" data-i18n="host_label"></span>
+                <input type="text" id="host" value="127.0.0.1" data-i18n-placeholder="host_placeholder"/>
             </div>
 
             <div class="field">
-                <span class="field-label">代理端口：</span>
-                <input type="number" id="port" value="7897" min="1" max="65535" placeholder="如 8080"/>
+                <span class="field-label" data-i18n="port_label"></span>
+                <input type="number" id="port" value="7897" min="1" max="65535" data-i18n-placeholder="port_placeholder"/>
             </div>
 
             <div class="field">
-                <span class="field-label">代理规则：</span>
+                <span class="field-label" data-i18n="rules_label"></span>
                 <label class="rule-btn active" data-rule="http">
                     <input type="checkbox" name="rules" value="http" checked/>HTTP
                 </label>
@@ -70,9 +70,9 @@
     </fieldset>
 
     <div class="actions">
-        <button class="btn-save" id="btn-save">保存</button>
+        <button class="btn-save" id="btn-save" data-i18n="btn_save"></button>
     </div>
-    <div class="hint">提示：单击插件图标可快速切换「指定代理 / 系统设置」</div>
+    <div class="hint" data-i18n="hint"></div>
 </div>
 
 <script src="popup.js"></script>

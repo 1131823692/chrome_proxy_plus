@@ -1,0 +1,31 @@
+{
+    "ext_name": {"message": "Proxy代理 Plus"},
+    "ext_description": {"message": "设置浏览器代理 - 增强版：单击切换代理，右键打开设置"},
+    "action_title": {"message": "Proxy代理"},
+    "ctx_menu": {"message": "Proxy代理设置"},
+    "settings_title": {"message": "Proxy代理设置"},
+    "mode_label": {"message": "代理模式："},
+    "mode_direct": {"message": "直接连接"},
+    "mode_fixed": {"message": "指定代理"},
+    "mode_auto": {"message": "自动检测"},
+    "mode_system": {"message": "系统设置"},
+    "scheme_label": {"message": "代理协议："},
+    "host_label": {"message": "代理地址："},
+    "host_placeholder": {"message": "如 123.45.67.89"},
+    "port_label": {"message": "代理端口："},
+    "port_placeholder": {"message": "如 8080"},
+    "rules_label": {"message": "代理规则："},
+    "btn_save": {"message": "保存"},
+    "hint": {"message": "提示：单击插件图标可快速切换「指定代理 / 系统设置」"},
+    "alert_host": {"message": "请输入代理服务器地址"},
+    "alert_port": {"message": "请输入代理服务器端口"},
+    "alert_port_range": {"message": "端口必须是 1-65535 之间的数字"},
+    "alert_rules": {"message": "请选择代理规则"},
+    "mode_label_fixed_on": {"message": "指定代理已启用"},
+    "icon_title": {
+        "message": "Proxy代理 - $LABEL$ (点击切换)",
+        "placeholders": {
+            "label": {"content": "$1"}
+        }
+    }
+}
