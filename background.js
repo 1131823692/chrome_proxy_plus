@@ -38,6 +38,14 @@ chrome.runtime.onStartup.addListener(() => {
 
 // 单击图标 → 在「指定代理」与「上次非代理模式」之间切换
 chrome.action.onClicked.addListener(async () => {
+    const { configured } = await chrome.storage.local.get(['configured']);
+
+    // 首次使用：未配置过代理，引导用户先打开设置页填写
+    if (!configured) {
+        chrome.tabs.create({ url: chrome.runtime.getURL('popup.html') });
+        return;
+    }
+
     const { mode = DEFAULTS.mode, lastNonProxyMode = 'system' } =
         await chrome.storage.local.get(['mode', 'lastNonProxyMode']);
 
@@ -95,14 +103,20 @@ async function applyProxy(mode) {
                 rules: { singleProxy: server, bypassList: [] },
             };
         } else {
-            // HTTP/HTTPS 代理按所选协议分别走
+        // HTTP/HTTPS 代理按所选协议分别走
             const proxyRules = { bypassList: [] };
             for (const rule of rules) {
                 if (rule === 'http') proxyRules.proxyForHttp = server;
                 if (rule === 'https') proxyRules.proxyForHttps = server;
                 if (rule === 'ftp') proxyRules.proxyForFtp = server;
             }
-            config = { mode: 'fixed_servers', rules: proxyRules };
+            // 兜底：若未命中任何规则，所有协议统一走该代理
+            if (proxyRules.proxyForHttp || proxyRules.proxyForHttps || proxyRules.proxyForFtp) {
+                config = { mode: 'fixed_servers', rules: proxyRules };
+            } else {
+                // 兜底：未命中任何规则，所有协议统一走该代理
+                config = { mode: 'fixed_servers', rules: { singleProxy: server, bypassList: [] } };
+            }
         }
 
         await updateIcon(mode);

@@ -3,15 +3,18 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title data-i18n="settings_title"></title>
+    <title data-i18n="ext_name"></title>
     <link rel="stylesheet" href="popup.css"/>
 </head>
 <body>
 <div class="container">
-    <h2 data-i18n="settings_title"></h2>
+    <header class="app-header">
+        <div class="logo">P</div>
+        <h2 data-i18n="ext_name"></h2>
+    </header>
 
     <fieldset>
-        <div class="field">
+        <div class="field mode-field">
             <span class="field-label" data-i18n="mode_label"></span>
             <label class="mode-btn" data-mode="direct">
                 <input type="radio" name="mode" value="direct"/><span data-i18n="mode_direct"></span>
@@ -22,12 +25,14 @@
             <label class="mode-btn" data-mode="auto_detect">
                 <input type="radio" name="mode" value="auto_detect"/><span data-i18n="mode_auto"></span>
             </label>
-            <label class="mode-btn active" data-mode="system">
-                <input type="radio" name="mode" value="system" checked/><span data-i18n="mode_system"></span>
-            </label>
-        </div>
+          <label class="mode-btn active" data-mode="system">
+              <input type="radio" name="mode" value="system" checked/><span data-i18n="mode_system"></span>
+          </label>
+       </div>
 
-        <div class="proxy-config">
+       <div class="mode-desc" id="mode-desc"></div>
+
+       <div class="proxy-config">
             <div class="field">
                 <span class="field-label" data-i18n="scheme_label"></span>
                 <label class="scheme-btn active" data-scheme="http">

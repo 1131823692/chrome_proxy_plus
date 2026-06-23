@@ -21,6 +21,15 @@ function applyI18n() {
 function updateModeUI() {
     const mode = $('input[name="mode"]:checked')?.value;
 
+    // 更新模式说明
+    const descKey = {
+        direct: 'mode_desc_direct',
+        fixed_servers: 'mode_desc_fixed',
+        auto_detect: 'mode_desc_auto',
+        system: 'mode_desc_system',
+    }[mode];
+    $('#mode-desc').textContent = descKey ? chrome.i18n.getMessage(descKey) : '';
+
     // 清除所有模式按钮高亮
     $$('.mode-btn').forEach((btn) => {
         btn.classList.remove('active', 'accent');
@@ -43,6 +52,13 @@ function updateSchemeUI() {
     const scheme = $('input[name="scheme"]:checked')?.value;
     const btn = $(`[data-scheme="${scheme}"]`);
     if (btn) btn.classList.add('active');
+
+    // SOCKS 协议走 singleProxy，规则区域无关，隐藏并说明
+    const rulesField = $('input[name="rules"]')?.closest('.field');
+    if (rulesField) {
+        const isSocks = scheme === 'socks4' || scheme === 'socks5';
+        rulesField.style.display = isSocks ? 'none' : '';
+    }
 }
 
 function updateRuleUI() {
@@ -101,25 +117,44 @@ async function handleSave() {
 
         await chrome.storage.local.set({
             mode,
+            configured: true,
             scheme: $('input[name="scheme"]:checked').value,
             host,
             port: portNum,
             rules: checkedRules.map((el) => el.value).join(','),
         });
     } else {
-        await chrome.storage.local.set({ mode });
+        await chrome.storage.local.set({ mode, configured: true });
     }
 
     // background.js 监听 storage 变化自动应用
-    window.close();
+    showSaveSuccess();
+}
+
+function showSaveSuccess() {
+    const hint = $('.hint');
+    hint.classList.remove('first-use');
+    hint.classList.add('success');
+    hint.textContent = chrome.i18n.getMessage('save_success');
+    // 短暂展示后关闭
+    setTimeout(() => window.close(), 800);
 }
 
 // ── 初始化 ────────────────────────────────────────────
 
 async function init() {
     const data = await chrome.storage.local.get([
-        'mode', 'scheme', 'host', 'port', 'rules',
+        'mode', 'scheme', 'host', 'port', 'rules', 'configured',
     ]);
+
+    // 首次使用：未配置过，显示引导提示
+    const hint = $('.hint');
+    if (!data.configured) {
+        hint.textContent = chrome.i18n.getMessage('hint_first_use');
+        hint.classList.add('first-use');
+    } else {
+        hint.textContent = chrome.i18n.getMessage('hint');
+    }
 
     // 恢复模式
     const mode = data.mode || 'system';
